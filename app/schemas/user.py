@@ -1,19 +1,16 @@
 from pydantic import BaseModel
-
+from typing import Optional
 
 class UserBase(BaseModel):
     name: str
     email: str
+    active: Optional[bool] = True
 
 class UserCreate(UserBase):
     password: str
 
 
-class UserActive(UserBase):
-    active: bool
-
-
-class user(UserBase):
+class User(UserBase):
     id: int
 
 
