@@ -1,16 +1,14 @@
 from pydantic import BaseModel
-
+from typing import Optional
 
 class CourseBase(BaseModel):
     title: str
     description: str
+    active: Optional[bool] = True
 
-class CoursesPrice(CourseBase):
+
+class CoursesCreate(CourseBase):
     price: float
-
-
-class CourseActive(CourseBase):
-    active: bool
 
 
 class Course(CourseBase):
