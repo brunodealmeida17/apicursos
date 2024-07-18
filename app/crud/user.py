@@ -35,11 +35,11 @@ def update_user(db: Session, user_id: int, user: UserCreate):
 
 def delete_user(db: Session, user_id: int):
     db_user = get_user(db, user_id)
-
+    
     if db_user:
         db.delete(db_user)
         db.commit()
-        return f"course successfully deleted: {db_user.email}"    
+        return db_user   
     return None
 
 

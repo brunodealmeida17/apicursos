@@ -11,7 +11,7 @@ def get_courses(db: Session, skip: int=0, limit: int=20):
     return db.query(Course).offset(skip).limit(limit).all()
 
 def create_course(db: Session, course: CoursesCreate):
-    db_course = db.query(title=course.title, description=course.description, price=course.price)
+    db_course = Course(title=course.title, description=course.description, price=course.price)
 
     db.add(db_course)
     db.commit()
@@ -37,7 +37,7 @@ def delete_course(db: Session, course_id: int):
     db_course = get_course(db, course_id)
     
     if db_course:
-        db.delete()
-        db.refresh()
-        return f"course successfully deleted: {db_course.title}"        
+        db.delete(db_course)
+        db.commit()
+        return db_course  
     return None

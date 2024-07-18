@@ -9,4 +9,4 @@ class Course(Base):
     title = Column(String, max_length=150, index=True)
     description = Column(Text)
     price = Column(Float)
-    active = Column(Boolean, blank=True, nullable=True, default=True)
+    active = Column(Boolean, nullable=True, default=True)
